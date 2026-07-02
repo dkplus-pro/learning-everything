@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>03 简单题通法</title>
+    <style>
+      body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; margin: 2rem; line-height: 1.6; color: #1f2937; }
+      main { max-width: 880px; margin: auto; }
+      section { padding: 1rem 1.25rem; margin: 1rem 0; border: 1px solid #d1d5db; border-radius: 12px; background: #f9fafb; }
+      code, pre { background: #111827; color: #f9fafb; border-radius: 8px; }
+      pre { padding: 1rem; overflow-x: auto; }
+      button { cursor: pointer; border: 0; border-radius: 999px; padding: .75rem 1rem; background: #2563eb; color: white; font-weight: 700; }
+      .result { font-weight: 700; color: #047857; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>03 简单题通法：两数之和</h1>
+      <p>用“复述 → 手推 → 选工具 → 写不变量 → 查边界”的流程拆解简单题。</p>
+      <section>
+        <h2>示例输入</h2>
+        <p>数组：<code>[2, 7, 11, 15]</code>，目标值：<code>9</code></p>
+        <button id="run-demo">运行示例</button>
+        <p class="result" id="result">等待运行</p>
+      </section>
+      <section>
+        <h2>循环不变量</h2>
+        <p>扫描到第 <code>i</code> 个元素前，哈希表里保存了所有左侧数字及其下标。</p>
+        <pre id="trace"></pre>
+      </section>
+    </main>
+    <script type="module" src="./demo.js"></script>
+  </body>
+</html>
