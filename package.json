@@ -1,0 +1,11 @@
+{
+  "name": "learning-everything",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "demo": "node scripts/serve-course.mjs",
+    "demo:list": "node scripts/serve-course.mjs --list",
+    "test": "node scripts/verify-course-demos.mjs"
+  }
+}
