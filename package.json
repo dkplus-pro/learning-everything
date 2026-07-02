@@ -8,6 +8,7 @@
     "demo:list": "node scripts/serve-course.mjs --list",
     "test": "node scripts/verify-course-demos.mjs",
     "demo:01": "node scripts/serve-course.mjs 01",
-    "demo:02": "node scripts/serve-course.mjs 02"
+    "demo:02": "node scripts/serve-course.mjs 02",
+    "demo:03": "node scripts/serve-course.mjs 03"
   }
 }
