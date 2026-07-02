@@ -11,6 +11,7 @@
     "demo:02": "node scripts/serve-course.mjs 02",
     "demo:03": "node scripts/serve-course.mjs 03",
     "demo:04": "node scripts/serve-course.mjs 04",
-    "demo:05": "node scripts/serve-course.mjs 05"
+    "demo:05": "node scripts/serve-course.mjs 05",
+    "demo:06": "node scripts/serve-course.mjs 06"
   }
 }
