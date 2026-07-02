@@ -1,12 +1,11 @@
-const output = document.querySelector('#output');
-
 // 用统一出口打印推导，避免算法逻辑和 DOM 操作混在一起。
 function render(lines) {
+  const output = document.querySelector('#output');
   output.textContent = lines.join('\n');
 }
 
 // 难题通法一：动态规划。状态 dp[i] 表示「以 nums[i] 结尾」的最长递增子序列长度。
-function explainLongestIncreasingSubsequence(nums) {
+export function explainLongestIncreasingSubsequence(nums) {
   const dp = Array(nums.length).fill(1);
   const lines = [`题目：求 ${JSON.stringify(nums)} 的最长递增子序列长度`, '状态：dp[i] = 以 nums[i] 结尾的最佳答案'];
 
@@ -26,7 +25,7 @@ function explainLongestIncreasingSubsequence(nums) {
 }
 
 // 判定函数：给定最大子数组和上限 limit，判断能否在 maxGroups 组内完成分割。
-function canSplitWithin(nums, maxGroups, limit) {
+export function canSplitWithin(nums, maxGroups, limit) {
   let groups = 1;
   let current = 0;
 
@@ -43,7 +42,7 @@ function canSplitWithin(nums, maxGroups, limit) {
 }
 
 // 难题通法二：二分答案。优化目标不好直接求，就把「答案是否可行」变成判定题。
-function explainSplitArray(nums, groups) {
+export function explainSplitArray(nums, groups) {
   let left = Math.max(...nums);
   let right = nums.reduce((sum, num) => sum + num, 0);
   const lines = [`题目：把 ${JSON.stringify(nums)} 分成 ${groups} 组，使最大组和尽量小`, `答案范围：[${left}, ${right}]`];
@@ -64,11 +63,13 @@ function explainSplitArray(nums, groups) {
   return lines;
 }
 
-// 绑定按钮事件，让每个难题范式都能独立演示。
-document.querySelector('#run-lis').addEventListener('click', () => {
-  render(explainLongestIncreasingSubsequence([10, 9, 2, 5, 3, 7, 101, 18]));
-});
+// 绑定按钮事件，让每个难题范式都能独立演示；Node 导入验证时不会访问 document。
+if (typeof document !== 'undefined') {
+  document.querySelector('#run-lis')?.addEventListener('click', () => {
+    render(explainLongestIncreasingSubsequence([10, 9, 2, 5, 3, 7, 101, 18]));
+  });
 
-document.querySelector('#run-split').addEventListener('click', () => {
-  render(explainSplitArray([7, 2, 5, 10, 8], 2));
-});
+  document.querySelector('#run-split')?.addEventListener('click', () => {
+    render(explainSplitArray([7, 2, 5, 10, 8], 2));
+  });
+}

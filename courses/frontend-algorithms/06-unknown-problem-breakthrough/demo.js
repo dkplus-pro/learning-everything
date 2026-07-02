@@ -1,8 +1,5 @@
-const input = document.querySelector('#numbers');
-const output = document.querySelector('#output');
-
 // 把用户输入转换成数字数组；无效项会被过滤，避免演示时因为空格或多余逗号崩溃。
-function parseNumbers(text) {
+export function parseNumbers(text) {
   return text
     .split(',')
     .map((item) => Number(item.trim()))
@@ -10,7 +7,7 @@ function parseNumbers(text) {
 }
 
 // 暴力锚点：排序后比较差异位置。它不一定最优，但非常适合作为陌生题的第一版正确方案。
-function sortedAnchor(nums) {
+export function sortedAnchor(nums) {
   const sorted = [...nums].sort((a, b) => a - b);
   let left = 0;
   let right = nums.length - 1;
@@ -22,7 +19,7 @@ function sortedAnchor(nums) {
 }
 
 // 优化观察：不用完整排序，只找逆序边界，并用区间最小最大值向外扩展。
-function boundaryOptimization(nums) {
+export function boundaryOptimization(nums) {
   let start = -1;
   let end = -1;
   let maxSeen = -Infinity;
@@ -44,7 +41,7 @@ function boundaryOptimization(nums) {
 }
 
 // 输出面试可说的话：每一步都体现「我在缩小未知范围」。
-function explainBreakthrough(nums) {
+export function explainBreakthrough(nums) {
   if (nums.length === 0) return ['请输入至少一个数字。'];
 
   const anchor = sortedAnchor(nums);
@@ -60,6 +57,11 @@ function explainBreakthrough(nums) {
 }
 
 // 事件入口保持很薄，方便把算法函数复制到面试白板或在线编辑器中。
-document.querySelector('#run').addEventListener('click', () => {
-  output.textContent = explainBreakthrough(parseNumbers(input.value)).join('\n');
-});
+// Node 导入验证时不会访问 document。
+if (typeof document !== 'undefined') {
+  document.querySelector('#run')?.addEventListener('click', () => {
+    const input = document.querySelector('#numbers');
+    const output = document.querySelector('#output');
+    output.textContent = explainBreakthrough(parseNumbers(input.value)).join('\n');
+  });
+}
