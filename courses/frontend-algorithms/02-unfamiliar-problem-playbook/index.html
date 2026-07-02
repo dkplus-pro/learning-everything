@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>02 遇到陌生算法题的解题思路</title>
+    <style>
+      body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; max-width: 860px; margin: 40px auto; line-height: 1.7; padding: 0 20px; }
+      button { padding: 8px 14px; cursor: pointer; }
+      input { padding: 8px; min-width: 260px; }
+      pre { background: #111827; color: #e5e7eb; padding: 16px; border-radius: 10px; overflow: auto; }
+      .card { border: 1px solid #d1d5db; border-radius: 12px; padding: 18px; margin: 16px 0; }
+    </style>
+  </head>
+  <body>
+    <h1>02 遇到陌生算法题的解题思路</h1>
+    <p>示例题：有效括号。重点是从“最近匹配”识别出栈结构。</p>
+    <div class="card">
+      <label>输入括号串：<input id="source" value="{[()]}" /></label>
+      <button id="run-demo">运行示例</button>
+      <p id="result">等待运行...</p>
+      <pre id="trace"></pre>
+    </div>
+    <script type="module" src="./demo.js"></script>
+  </body>
+</html>
