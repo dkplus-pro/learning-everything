@@ -6,7 +6,7 @@ import { fileURLToPath } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, '..');
-const coursesRoot = path.join(root, 'algorithm', 'frontend-interview', 'courses');
+const coursesRoot = path.join(root, 'frontend-interview', 'courses');
 
 function listCourses() {
   if (!existsSync(coursesRoot)) return [];

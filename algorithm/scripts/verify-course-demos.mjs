@@ -4,11 +4,11 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, '..');
-const coursesRoot = path.join(root, 'algorithm', 'frontend-interview', 'courses');
+const coursesRoot = path.join(root, 'frontend-interview', 'courses');
 const pkg = JSON.parse(readFileSync(path.join(root, 'package.json'), 'utf8'));
 
 if (!existsSync(coursesRoot)) {
-  console.error('缺少课程目录 algorithm/frontend-interview/courses');
+  console.error('缺少课程目录 frontend-interview/courses');
   process.exit(1);
 }
 

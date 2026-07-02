@@ -8,7 +8,7 @@
 
 ## 运行方式
 
-在仓库根目录运行：
+在 `algorithm/` 目录运行：
 
 ```bash
 npm run demo:list
