@@ -38,9 +38,3 @@
 ```bash
 npm run demo -- 03
 ```
-
-### 独立 demo 脚本
-
-```bash
-npm run demo:03
-```
