@@ -4,11 +4,11 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, '..');
-const coursesRoot = path.join(root, 'courses', 'frontend-algorithms');
+const coursesRoot = path.join(root, 'algorithm', 'frontend-interview', 'courses');
 const pkg = JSON.parse(readFileSync(path.join(root, 'package.json'), 'utf8'));
 
 if (!existsSync(coursesRoot)) {
-  console.error('缺少课程目录 courses/frontend-algorithms');
+  console.error('缺少课程目录 algorithm/frontend-interview/courses');
   process.exit(1);
 }
 
@@ -42,6 +42,7 @@ for (const course of courses) {
 
   const html = readFileSync(path.join(dir, 'index.html'), 'utf8');
   if (!html.includes('./demo.js')) fail(`${course}/index.html 未引用 ./demo.js`);
+  if (!html.includes('id="visual"')) fail(`${course}/index.html 缺少 #visual 图示容器`);
 
   const demo = readFileSync(path.join(dir, 'demo.js'), 'utf8');
   if (!/[\u4e00-\u9fff]/.test(demo)) fail(`${course}/demo.js 缺少中文注释或说明`);

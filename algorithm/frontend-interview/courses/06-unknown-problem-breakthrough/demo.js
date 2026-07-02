@@ -56,12 +56,28 @@ export function explainBreakthrough(nums) {
   ];
 }
 
+export function buildBreakthroughDiagram(nums) {
+  if (nums.length === 0) return '<p>请输入数字后生成图示。</p>';
+  const anchor = sortedAnchor(nums);
+  const optimized = boundaryOptimization(nums);
+  const inRange = (index) => index >= optimized.start && index <= optimized.end;
+  return `<div>
+    <p><strong>第一步：原数组 vs 排序锚点</strong></p>
+    <div class="row">原数组：${nums.map((num, i) => `<span class="cell ${nums[i] !== anchor.sorted[i] ? 'bad' : ''}">${i}<br/>${num}</span>`).join('')}</div>
+    <div class="row">排序后：${anchor.sorted.map((num, i) => `<span class="cell ${nums[i] !== num ? 'bad' : ''}">${i}<br/>${num}</span>`).join('')}</div>
+    <p><strong>第二步：边界优化</strong></p>
+    <div class="row">边界：${nums.map((num, i) => `<span class="cell ${inRange(i) ? 'bad' : ''} ${i === optimized.start || i === optimized.end ? 'boundary' : ''}">${i}<br/>${num}</span>`).join('')}</div>
+    <p>橙色代表必须纳入排序的区间，蓝色描边是最终左右边界。</p>
+  </div>`;
+}
+
 // 事件入口保持很薄，方便把算法函数复制到面试白板或在线编辑器中。
 // Node 导入验证时不会访问 document。
 if (typeof document !== 'undefined') {
   document.querySelector('#run')?.addEventListener('click', () => {
     const input = document.querySelector('#numbers');
-    const output = document.querySelector('#output');
-    output.textContent = explainBreakthrough(parseNumbers(input.value)).join('\n');
+    const nums = parseNumbers(input.value);
+    document.querySelector('#visual').innerHTML = buildBreakthroughDiagram(nums);
+    document.querySelector('#output').textContent = explainBreakthrough(nums).join('\n');
   });
 }

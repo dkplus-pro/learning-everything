@@ -4,19 +4,19 @@
 
 - `README.md`：课程文档、面试表达模板、解题步骤。
 - `demo.js`：带中文注释的核心算法代码。
-- `index.html`：可在浏览器中运行的交互 demo。
+- `index.html`：可在浏览器中运行的交互 demo，包含算法状态图示。
 - 独立 npm 脚本：`npm run demo:XX`。
 
 ## 课程目录
 
 | 课次 | 主题 | 重点 | 运行方式 |
 | --- | --- | --- | --- |
-| 01 | [从零建立算法题思维](../../courses/frontend-algorithms/01-zero-to-algorithm-thinking/README.md) | 输入输出、手算样例、暴力到优化 | `npm run demo:01` |
-| 02 | [遇到陌生算法题的解题思路](../../courses/frontend-algorithms/02-unfamiliar-problem-playbook/README.md) | 陌生题五步法、从题意识别结构 | `npm run demo:02` |
-| 03 | [简单题通用解题思路](../../courses/frontend-algorithms/03-simple-problem-patterns/README.md) | 一次遍历、哈希表、边界表达 | `npm run demo:03` |
-| 04 | [中等题通用解题思路](../../courses/frontend-algorithms/04-medium-problem-patterns/README.md) | 滑动窗口、维护合法状态 | `npm run demo:04` |
-| 05 | [难题通用解题思路](../../courses/frontend-algorithms/05-hard-problem-patterns/README.md) | 拆状态、递推/搜索、先降维 | `npm run demo:05` |
-| 06 | [不懂的题怎么破局](../../courses/frontend-algorithms/06-unknown-problem-breakthrough/README.md) | 卡住时的降级策略和沟通话术 | `npm run demo:06` |
+| 01 | [从零建立算法题思维](courses/01-zero-to-algorithm-thinking/README.md) | 输入输出、手算样例、暴力到优化；价格扫描图 | `npm run demo:01` |
+| 02 | [遇到陌生算法题的解题思路](courses/02-unfamiliar-problem-playbook/README.md) | 陌生题五步法、从题意识别结构；栈图 | `npm run demo:02` |
+| 03 | [简单题通用解题思路](courses/03-simple-problem-patterns/README.md) | 一次遍历、哈希表、边界表达；哈希表匹配图 | `npm run demo:03` |
+| 04 | [中等题通用解题思路](courses/04-medium-problem-patterns/README.md) | 滑动窗口、维护合法状态；窗口高亮图 | `npm run demo:04` |
+| 05 | [难题通用解题思路](courses/05-hard-problem-patterns/README.md) | 拆状态、递推/搜索、先降维；DP/二分图 | `npm run demo:05` |
+| 06 | [不懂的题怎么破局](courses/06-unknown-problem-breakthrough/README.md) | 卡住时的降级策略和沟通话术；排序边界图 | `npm run demo:06` |
 
 ## 如何运行 demo
 

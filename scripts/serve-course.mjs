@@ -6,7 +6,7 @@ import { fileURLToPath } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, '..');
-const coursesRoot = path.join(root, 'courses', 'frontend-algorithms');
+const coursesRoot = path.join(root, 'algorithm', 'frontend-interview', 'courses');
 
 function listCourses() {
   if (!existsSync(coursesRoot)) return [];
@@ -18,7 +18,7 @@ function listCourses() {
 
 function usage() {
   console.log('可用课程 demo:');
-  for (const course of listCourses()) console.log(`- ${course}: npm run demo -- ${course.slice(0, 2)}`);
+  for (const course of listCourses()) console.log(`- ${course}: npm run demo:${course.slice(0, 2)}`);
 }
 
 const arg = process.argv[2];

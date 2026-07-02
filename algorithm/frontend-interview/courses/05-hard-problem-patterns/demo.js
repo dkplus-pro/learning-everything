@@ -1,7 +1,7 @@
-// 用统一出口打印推导，避免算法逻辑和 DOM 操作混在一起。
-function render(lines) {
-  const output = document.querySelector('#output');
-  output.textContent = lines.join('\n');
+// 用统一出口打印推导和图示，避免算法逻辑和 DOM 操作混在一起。
+function render(lines, visualHtml) {
+  document.querySelector('#visual').innerHTML = visualHtml;
+  document.querySelector('#output').textContent = lines.join('\n');
 }
 
 // 难题通法一：动态规划。状态 dp[i] 表示「以 nums[i] 结尾」的最长递增子序列长度。
@@ -22,6 +22,23 @@ export function explainLongestIncreasingSubsequence(nums) {
   lines.push(`答案：${Math.max(...dp)}`);
   lines.push('面试表达：先定义状态，再解释转移，最后说明边界 dp[i] 初始为 1。');
   return lines;
+}
+
+export function buildLisDiagram(nums) {
+  const dp = Array(nums.length).fill(1);
+  const cards = [];
+  for (let i = 0; i < nums.length; i += 1) {
+    for (let j = 0; j < i; j += 1) {
+      // 图示复用同一转移：nums[j] < nums[i] 时更新 dp[i]。
+      if (nums[j] < nums[i]) dp[i] = Math.max(dp[i], dp[j] + 1);
+    }
+    cards.push(`<div class="diagram-card">
+      <strong>处理 nums[${i}] = ${nums[i]}</strong>
+      <div class="bars">${dp.map((value, index) => `<div class="bar" style="height:${32 + value * 18}px" title="dp[${index}]=${value}">${value}</div>`).join('')}</div>
+      <small>柱子高度代表 dp 值；越高表示以该位置结尾的递增子序列越长。</small>
+    </div>`);
+  }
+  return cards.join('');
 }
 
 // 判定函数：给定最大子数组和上限 limit，判断能否在 maxGroups 组内完成分割。
@@ -63,13 +80,34 @@ export function explainSplitArray(nums, groups) {
   return lines;
 }
 
+export function buildSplitDiagram(nums, groups) {
+  let left = Math.max(...nums);
+  let right = nums.reduce((sum, num) => sum + num, 0);
+  const cards = [];
+  while (left < right) {
+    const mid = Math.floor((left + right) / 2);
+    const ok = canSplitWithin(nums, groups, mid);
+    cards.push(`<div class="diagram-card">
+      <strong>二分答案：left=${left}, mid=${mid}, right=${right}</strong>
+      <div class="range"><span>${left}</span><span class="mid">${mid}</span><span>${right}</span></div>
+      <small>${ok ? `上限 ${mid} 可行：答案在左半边或就是 mid。` : `上限 ${mid} 不可行：答案必须更大。`}</small>
+    </div>`);
+    if (ok) right = mid;
+    else left = mid + 1;
+  }
+  cards.push(`<div class="diagram-card"><strong>收敛答案：${left}</strong><p>二分区间变成单点，说明最小可行最大组和就是 ${left}。</p></div>`);
+  return cards.join('');
+}
+
 // 绑定按钮事件，让每个难题范式都能独立演示；Node 导入验证时不会访问 document。
 if (typeof document !== 'undefined') {
   document.querySelector('#run-lis')?.addEventListener('click', () => {
-    render(explainLongestIncreasingSubsequence([10, 9, 2, 5, 3, 7, 101, 18]));
+    const nums = [10, 9, 2, 5, 3, 7, 101, 18];
+    render(explainLongestIncreasingSubsequence(nums), buildLisDiagram(nums));
   });
 
   document.querySelector('#run-split')?.addEventListener('click', () => {
-    render(explainSplitArray([7, 2, 5, 10, 8], 2));
+    const nums = [7, 2, 5, 10, 8];
+    render(explainSplitArray(nums, 2), buildSplitDiagram(nums, 2));
   });
 }

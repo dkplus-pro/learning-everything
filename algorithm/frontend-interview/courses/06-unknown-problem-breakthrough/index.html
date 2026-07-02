@@ -53,6 +53,33 @@
         background: #1e293b;
         color: #ffedd5;
       }
+      .visual {
+        display: grid;
+        gap: 12px;
+        margin-top: 12px;
+      }
+      .row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        align-items: center;
+      }
+      .cell {
+        min-width: 42px;
+        padding: 8px;
+        text-align: center;
+        border-radius: 10px;
+        border: 1px solid #fdba74;
+        background: #fff7ed;
+      }
+      .bad {
+        background: #ea580c;
+        color: #fff;
+        font-weight: 800;
+      }
+      .boundary {
+        outline: 3px solid #2563eb;
+      }
     </style>
   </head>
   <body>
@@ -67,6 +94,7 @@
 
     <section>
       <h2>破局记录</h2>
+      <div id="visual" class="visual" aria-label="破局边界图示">点击按钮后显示图示。</div>
       <pre id="output">点击按钮开始。</pre>
     </section>
 
