@@ -16,6 +16,13 @@ docker build -t learn-docker-02:dev .
 docker run --rm learn-docker-02:dev
 ```
 
+本课默认使用 `mirror.gcr.io/library/python:3.12-alpine` 作为基础镜像。如果你的网络无法访问它，可以换成自己的镜像源：
+
+```bash
+PYTHON_IMAGE=<你的镜像源>/library/python:3.12-alpine RUN_DOCKER=1 ./validate.sh
+docker build --build-arg PYTHON_IMAGE=<你的镜像源>/library/python:3.12-alpine -t learn-docker-02:dev .
+```
+
 尝试传入环境变量：
 
 ```bash

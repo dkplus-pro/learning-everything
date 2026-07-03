@@ -1,5 +1,6 @@
 # 中文注释：选择轻量 Python 基础镜像，减少示例镜像体积。
-FROM python:3.12-alpine
+ARG PYTHON_IMAGE=mirror.gcr.io/library/python:3.12-alpine
+FROM ${PYTHON_IMAGE}
 
 # 中文注释：通过标签记录课程信息，便于 docker image inspect 查看。
 LABEL org.opencontainers.image.title="learn-docker-02"

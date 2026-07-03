@@ -1,5 +1,6 @@
 # 中文注释：使用 Alpine 让示例尽量小；脚本负责写入 /data。
-FROM alpine:3.20
+ARG ALPINE_IMAGE=mirror.gcr.io/library/alpine:3.20
+FROM ${ALPINE_IMAGE}
 
 WORKDIR /app
 

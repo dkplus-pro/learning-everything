@@ -2,7 +2,10 @@
 services:
   web:
     # 中文注释：构建本目录下的 Web 服务镜像。
-    build: ./web
+    build:
+      context: ./web
+      args:
+        PYTHON_IMAGE: ${PYTHON_IMAGE:-mirror.gcr.io/library/python:3.12-alpine}
     ports:
       - "8084:8000"
     environment:
@@ -15,7 +18,7 @@ services:
 
   cache:
     # 中文注释：Redis 用来演示第二个服务和数据卷，不在示例代码中写入业务数据。
-    image: redis:7-alpine
+    image: ${REDIS_IMAGE:-mirror.gcr.io/library/redis:7-alpine}
     volumes:
       - cache_data:/data
     networks:

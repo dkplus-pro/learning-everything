@@ -25,12 +25,19 @@ docker run --rm -v learn-docker-notes:/data learn-docker-03 cat /data/notes.txt
 docker volume rm learn-docker-notes
 ```
 
+本课默认使用 `mirror.gcr.io/library/alpine:3.20` 作为基础镜像。如果你的网络无法访问它，可以换成自己的镜像源：
+
+```bash
+ALPINE_IMAGE=<你的镜像源>/library/alpine:3.20 RUN_DOCKER=1 ./validate.sh
+docker build --build-arg ALPINE_IMAGE=<你的镜像源>/library/alpine:3.20 -t learn-docker-03 .
+```
+
 ## 运行步骤：网络
 
 ```bash
 docker network create learn-docker-net
-docker run -d --name lesson03-web --network learn-docker-net nginx:alpine
-docker run --rm --network learn-docker-net curlimages/curl:8.8.0 http://lesson03-web
+docker run -d --name lesson03-web --network learn-docker-net mirror.gcr.io/library/nginx:alpine
+docker run --rm --network learn-docker-net mirror.gcr.io/curlimages/curl:8.8.0 http://lesson03-web
 docker rm -f lesson03-web
 docker network rm learn-docker-net
 ```

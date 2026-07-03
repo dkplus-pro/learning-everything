@@ -1,11 +1,12 @@
 # 中文注释：builder 阶段负责编译检查，避免把构建缓存带入运行阶段。
-FROM python:3.12-alpine AS builder
+ARG PYTHON_IMAGE=mirror.gcr.io/library/python:3.12-alpine
+FROM ${PYTHON_IMAGE} AS builder
 WORKDIR /src
 COPY app/ ./
 RUN python -m compileall server.py
 
 # 中文注释：runtime 阶段只复制运行需要的文件。
-FROM python:3.12-alpine AS runtime
+FROM ${PYTHON_IMAGE} AS runtime
 WORKDIR /app
 
 # 中文注释：创建非 root 用户，降低容器逃逸或误操作带来的风险。

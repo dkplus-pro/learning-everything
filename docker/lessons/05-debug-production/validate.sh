@@ -11,7 +11,8 @@ grep -q 'USER app' Dockerfile
 grep -q 'SIGTERM' app/server.py
 
 if [[ "${RUN_DOCKER:-0}" == "1" ]]; then
-  docker build --target runtime -t learn-docker-05:prod .
+  python_image="${PYTHON_IMAGE:-mirror.gcr.io/library/python:3.12-alpine}"
+  docker build --build-arg "PYTHON_IMAGE=${python_image}" --target runtime -t learn-docker-05:prod .
 fi
 
 echo "第 05 课验证通过。"

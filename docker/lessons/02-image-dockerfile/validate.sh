@@ -11,7 +11,8 @@ grep -q 'APP_MESSAGE' Dockerfile
 grep -q 'tmp/' .dockerignore
 
 if [[ "${RUN_DOCKER:-0}" == "1" ]]; then
-  docker build -t learn-docker-02:dev .
+  python_image="${PYTHON_IMAGE:-mirror.gcr.io/library/python:3.12-alpine}"
+  docker build --build-arg "PYTHON_IMAGE=${python_image}" -t learn-docker-02:dev .
   docker run --rm learn-docker-02:dev | grep -q 'Dockerfile'
 fi
 

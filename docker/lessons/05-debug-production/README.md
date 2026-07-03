@@ -18,6 +18,13 @@ docker run -d --name learn-docker-05 -p 8085:8000 learn-docker-05:prod
 curl http://localhost:8085/health
 ```
 
+本课默认使用 `mirror.gcr.io/library/python:3.12-alpine` 作为多阶段构建的基础镜像。如果你的网络无法访问它，可以换成自己的镜像源：
+
+```bash
+PYTHON_IMAGE=<你的镜像源>/library/python:3.12-alpine RUN_DOCKER=1 ./validate.sh
+docker build --build-arg PYTHON_IMAGE=<你的镜像源>/library/python:3.12-alpine --target runtime -t learn-docker-05:prod .
+```
+
 调试：
 
 ```bash

@@ -22,6 +22,19 @@ cd docker/lessons/04-compose-multi-service
 docker compose up --build
 ```
 
+本课默认使用镜像代理：
+
+- `PYTHON_IMAGE=mirror.gcr.io/library/python:3.12-alpine`
+- `REDIS_IMAGE=mirror.gcr.io/library/redis:7-alpine`
+
+如果你的网络无法访问这些镜像，可以在启动时换成自己的镜像源：
+
+```bash
+PYTHON_IMAGE=<你的镜像源>/library/python:3.12-alpine \
+REDIS_IMAGE=<你的镜像源>/library/redis:7-alpine \
+docker compose up --build
+```
+
 访问：
 
 ```bash

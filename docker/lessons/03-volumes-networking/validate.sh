@@ -11,7 +11,8 @@ grep -q '/data/notes.txt' app/write-note.sh
 grep -q 'docker network create' README.md
 
 if [[ "${RUN_DOCKER:-0}" == "1" ]]; then
-  docker build -t learn-docker-03 .
+  alpine_image="${ALPINE_IMAGE:-mirror.gcr.io/library/alpine:3.20}"
+  docker build --build-arg "ALPINE_IMAGE=${alpine_image}" -t learn-docker-03 .
 fi
 
 echo "第 03 课验证通过。"
