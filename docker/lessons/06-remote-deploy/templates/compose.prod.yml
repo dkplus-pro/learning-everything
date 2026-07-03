@@ -1,0 +1,20 @@
+# 中文注释：生产 Compose 模板，请复制到受控服务器后替换占位符。
+services:
+  app:
+    image: ${APP_IMAGE:?请设置 APP_IMAGE，例如 registry.example.com/app:git-sha}
+    restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      - "${APP_PORT:-8080}:8000"
+    healthcheck:
+      # 中文注释：生产发布后用健康检查判断是否可接收流量。
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=2)"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
