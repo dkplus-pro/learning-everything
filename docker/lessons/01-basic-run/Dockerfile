@@ -1,5 +1,6 @@
 # 中文注释：使用官方 Python 运行时，便于启动一个零依赖 HTTP 服务。
-FROM python:3.12-alpine
+ARG PYTHON_IMAGE=mirror.gcr.io/library/python:3.12-alpine
+FROM ${PYTHON_IMAGE}
 
 # 中文注释：把工作目录固定为 /app，后续命令都在这里执行。
 WORKDIR /app

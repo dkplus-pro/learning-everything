@@ -23,6 +23,18 @@ docker build -t learn-docker-01 .
 docker run --name learn-docker-01 -p 8081:8000 learn-docker-01
 ```
 
+本课默认使用 `mirror.gcr.io/library/python:3.12-alpine`，避免网络不稳定时卡在 Docker Hub 的 `auth.docker.io`。如果你想切回 Docker Hub 官方名称，可以显式传入：
+
+```bash
+PYTHON_IMAGE=python:3.12-alpine RUN_DOCKER=1 ./validate.sh
+
+docker build \
+  --build-arg PYTHON_IMAGE=python:3.12-alpine \
+  -t learn-docker-01 .
+```
+
+如果你的网络无法访问 `mirror.gcr.io`，把 `PYTHON_IMAGE` 换成公司、学校或云厂商提供的镜像源。
+
 另开一个终端访问：
 
 ```bash
