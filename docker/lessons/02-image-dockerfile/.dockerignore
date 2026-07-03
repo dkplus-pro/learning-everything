@@ -1,0 +1,5 @@
+# 中文注释：排除本地临时文件，避免污染构建上下文。
+tmp/
+*.log
+__pycache__/
+.pytest_cache/
