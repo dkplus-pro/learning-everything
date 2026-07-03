@@ -6,6 +6,8 @@
 
 - [算法](algorithm/README.md)
   - [前端面试算法题课程](algorithm/frontend-interview/README.md)（含图示 demo）
+- [Docker](docker/README.md)
+  - 从零到远程部署的 6 课 Docker 课程（含独立 demo 与验证脚本）
 
 ## 使用方式
 
@@ -16,4 +18,11 @@ cd algorithm
 npm run demo:list
 npm run demo:01
 npm test
+```
+
+Docker 课程：
+
+```bash
+cd docker
+./scripts/validate-all.sh
 ```

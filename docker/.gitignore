@@ -1,0 +1,4 @@
+# Python/Node 本地验证产物
+__pycache__/
+*.pyc
+node_modules/
