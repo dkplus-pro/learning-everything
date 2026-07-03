@@ -1,0 +1,32 @@
+# 中文注释：Compose 文件把多容器应用声明成一个可重复运行的项目。
+services:
+  web:
+    # 中文注释：构建本目录下的 Web 服务镜像。
+    build: ./web
+    ports:
+      - "8084:8000"
+    environment:
+      # 中文注释：cache 是 Compose 服务名，也会成为同网络内 DNS 名称。
+      CACHE_HOST: cache
+    depends_on:
+      - cache
+    networks:
+      - app_net
+
+  cache:
+    # 中文注释：Redis 用来演示第二个服务和数据卷，不在示例代码中写入业务数据。
+    image: redis:7-alpine
+    volumes:
+      - cache_data:/data
+    networks:
+      - app_net
+
+networks:
+  app_net:
+    # 中文注释：bridge 网络适合单机开发环境。
+    driver: bridge
+
+volumes:
+  cache_data:
+    # 中文注释：named volume 由 Docker 管理，便于清理和迁移。
+    driver: local
