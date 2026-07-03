@@ -6,7 +6,9 @@
   "scripts": {
     "demo": "node scripts/serve-course.mjs",
     "demo:list": "node scripts/serve-course.mjs --list",
+    "demo:all": "node scripts/smoke-demos.mjs",
     "test": "node scripts/verify-course-demos.mjs && ./scripts/validate-all.sh",
+    "lint": "node scripts/verify-course-demos.mjs",
     "demo:01": "node scripts/serve-course.mjs 01",
     "demo:02": "node scripts/serve-course.mjs 02",
     "demo:03": "node scripts/serve-course.mjs 03",
